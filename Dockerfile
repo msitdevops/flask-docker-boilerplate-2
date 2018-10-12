@@ -9,4 +9,4 @@ RUN pip3 install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 5000
-RUN chmod +x ./app/docker_script.sh
+RUN chmod 777 ./docker_script.sh
