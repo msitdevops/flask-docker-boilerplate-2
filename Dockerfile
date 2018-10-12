@@ -7,6 +7,5 @@ WORKDIR /app
 COPY . /app
 RUN pip3 install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
-
+RUN chmod +x ./docker_script.sh
 EXPOSE 5000
-RUN chmod 777 ./docker_script.sh
