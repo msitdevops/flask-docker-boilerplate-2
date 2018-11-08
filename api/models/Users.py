@@ -1,8 +1,9 @@
 from flask_login import UserMixin
 from .base import db
+from api.core import Mixin
 
 
-class Users(db.Model, UserMixin):
+class Users(db.Model, Mixin):
     """Users Table."""
 
     __tablename__ = "users"
@@ -19,5 +20,5 @@ class Users(db.Model, UserMixin):
         self.password = password
 
     def __repr__(self):
-        return f"<ID {self.id}><Username {self.username}>\
-        <Email {self.email}><Password {self.password}><Is_active {self.is_active}>"
+        return f"<Username {self.username}>\
+        <Email {self.email}><Password {self.password}>"
