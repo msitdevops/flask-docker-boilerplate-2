@@ -4,7 +4,8 @@ from flask import Flask, render_template, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length
-from api.models import db
+from api.models import db,Users
+from api.core import create_response, serialize_list
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -59,6 +60,12 @@ def signup():
         return '<h1>New user has been created!</h1>'
 
     return render_template('signup.html', form=form)
+
+# function that is called when you visit /users
+@main.route("/users", methods=["GET"])
+def get_users():
+    users = Users.query.all()
+    return create_response(data={"users": serialize_list(users)})
 
 @main.route('/dashboard')
 @login_required
